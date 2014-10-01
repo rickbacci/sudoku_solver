@@ -1,5 +1,4 @@
 require_relative 'puzzle/starting_matrix'
-require_relative 'puzzle/set_boxes'
 
 require_relative 'clear_all'
 require_relative 'check_sizes'
@@ -7,8 +6,6 @@ require_relative 'total_numbers_remaining'
 require_relative 'ranges'
 require_relative 'solve_for_one'
 require_relative 'solve_for_two'
-require_relative 'solve_for_three'
-require_relative 'solve_for_four'
 require_relative 'validation'
 require_relative 'puzzle/print_puzzle'
 require_relative 'solve_for'
@@ -28,13 +25,8 @@ end
 
 def solve_puzzle(array)
   
-  #clear_all(array)
-  
-  #total_numbers_remaining?(array)
   check_sizes(array)
-  
-  #@loop_once = 0
- 
+   
   if (@size1 > 0)
     solve_for_one(array)
   elsif @size2 > 0
