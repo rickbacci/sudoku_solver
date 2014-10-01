@@ -6,10 +6,11 @@ require_relative 'total_numbers_remaining'
 require_relative 'ranges'
 require_relative 'solve_for_one'
 require_relative 'solve_for_two'
+require_relative 'foo'
+
 require_relative 'validation'
 require_relative 'puzzle/print_puzzle'
 require_relative 'solve_for'
-require_relative 'foo'
 
 
 def initial_setup(array)

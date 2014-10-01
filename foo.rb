@@ -2,8 +2,6 @@
 
 
 def clear_value2(array, rows, columns, value, location)
-  #p "history #{@history}"
-  ## unless row == 6?
   row_to_exclude = location[-1].to_i
 
   rows.each do |row|
@@ -35,13 +33,9 @@ def clear_box(array, rows, columns, third_with_value, value, index, location)
   temp_array.each do |val|
     tmp << val
     if tmp.size == 3      
-      if tmp == third_with_value
-       # p "Don't clear me!" 
-      else
-        #p tmp
+      if tmp != third_with_value
         clear_value2(array, rows, columns, value, location)
       end
-
       tmp = []
     end
   end
