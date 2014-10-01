@@ -1,0 +1,68 @@
+
+def solve_for_twos(array, rows, columns, location)
+  #clear_all(array)
+
+  temp_array = []
+
+## --- build array of rows, columns, or boxes
+  rows.each do |row|
+    columns.each do |column|
+      temp_array << array[row][column]
+    end 
+  end
+ 
+  temp_array.each do |element|
+    if element.size == 2 ## clear pairs ([1,3] and [1,3]) not pairs of 'trips'
+    
+      if temp_array.count(element) == 2 ## matching pair found
+        pair = element
+        temp_array.each do |element2|
+          if element2.is_a?(Array) && pair != element2
+            before = element2
+            clear_value(array, rows, columns, element, element2, pair)
+          end
+        end
+      else ## clear 'trips' ([3,4], [3,7], [3,4,7])
+        temp_array.each do |element2|
+          if element2.size == 2 && (element2 != element) ## don't want to delete original
+            if temp_array.include?((element + element2).uniq.sort)
+              trips = (element + element2).uniq.sort
+              clear_value(array, rows, columns, element, element2, trips)
+            end
+          end
+        end
+      end
+    end
+  end
+end
+
+def clear_value(array, rows, columns, element, element2, value)
+  rows.each do |r|
+    columns.each do |c|
+
+      if array[r][c].is_a?(Array) && clear?(array[r][c], element, element2, value)
+        before = array[r][c]
+
+        ## this needs fixed....should not be allowing matches.size > 3
+        if value.size <= 3
+          array[r][c] -= value
+        end
+
+        if before != array[r][c]
+          @history << "[#{r}][#{c}] clearing #{value}...element before: #{before}," + 
+                      " element after: #{array[r][c]}"
+        end
+      end
+    end 
+  end
+  clear_all(array)
+  value = []
+end
+
+
+def clear?(val, el1, el2, value)
+  return false if val == el1
+  return false if val == el2
+  return false if val == value
+  return true
+end
