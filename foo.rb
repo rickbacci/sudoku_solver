@@ -12,8 +12,7 @@ def clear_value2(array, rows, columns, value, location)
 
         if before != array[row][column]
           #save_history(location, row, column, value, array[row][column], :clear_box, :values_in_row)
-          # @history << "[#{row}][#{column}] clearing #{value}...element before: #{before}," + 
-          #             " element after: #{array[row][column]}"
+           #@history << "[#{row}][#{column}] clearing #{value}...element before: #{before}, element after: #{array[row][column]}"
         end
       end
     end
@@ -123,7 +122,6 @@ def exist_only?(array, rows, columns, location)
     if tally == 1 
       third_with_value = thirds[index]
       target = box_affected(location, index)
-
       clear_box(array, target[0], target[1], third_with_value, value, index, location)
 
     end
