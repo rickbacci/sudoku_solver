@@ -1,4 +1,4 @@
-require_relative 'puzzle/starting_matrix'
+require_relative 'starting_matrix'
 
 require_relative 'clear_all'
 require_relative 'check_sizes'
@@ -9,7 +9,7 @@ require_relative 'solve_for_two'
 require_relative 'foo'
 
 require_relative 'validation'
-require_relative 'puzzle/print_puzzle'
+require_relative 'print_puzzle'
 require_relative 'solve_for'
 
 
