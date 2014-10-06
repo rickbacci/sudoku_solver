@@ -11,7 +11,7 @@ def clear_value2(array, rows, columns, value, location)
         array[row][column] -= [value]
 
         if before != array[row][column]
-          #save_history(location, row, column, value, array[row][column], :clear_box, :values_in_row)
+          save_history(location, row, column, value, array[row][column], :clear_box, :values_in_row)
            #@history << "[#{row}][#{column}] clearing #{value}...element before: #{before}, element after: #{array[row][column]}"
         end
       end
