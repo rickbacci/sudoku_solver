@@ -10,7 +10,6 @@ require_relative 'foo'
 
 require_relative 'validation'
 require_relative 'print_puzzle'
-require_relative 'solve_for'
 
 
 def initial_setup(array)
