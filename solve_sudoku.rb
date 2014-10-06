@@ -1,4 +1,4 @@
-require_relative 'starting_matrix'
+require_relative 'generate_matrix'
 
 require_relative 'clear_all'
 require_relative 'check_sizes'
