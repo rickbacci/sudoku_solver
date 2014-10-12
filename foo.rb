@@ -1,5 +1,5 @@
-## the only possible 9's in row6 are in box7...so all other 9's in box7 can be cleared.
-
+# the only possible 9's in row6 are in box7...so
+# all other 9's in box7 can be cleared.
 
 def clear_value2(array, rows, columns, value, location)
   row_to_exclude = location[-1].to_i
@@ -12,7 +12,6 @@ def clear_value2(array, rows, columns, value, location)
 
         if before != array[row][column]
           save_history(location, row, column, value, array[row][column], :clear_box, :values_in_row)
-           #@history << "[#{row}][#{column}] clearing #{value}...element before: #{before}, element after: #{array[row][column]}"
         end
       end
     end
@@ -54,7 +53,7 @@ def box_affected(location, index)
     return [(6..8), (0..2)] if index == 0
     return [(6..8), (3..5)] if index == 1
     return [(6..8), (6..8)] if index == 2
-  end  
+  end
 
   if location == :col0 || location == :col1 || location == :col2
     return [(0..2), (0..2)] if index == 0
@@ -68,13 +67,13 @@ def box_affected(location, index)
     return [(0..2), (6..8)] if index == 0
     return [(3..5), (6..8)] if index == 1
     return [(6..8), (6..8)] if index == 2
-  end  
+  end
 end
 
 def split_array(array, rows, columns)
   thirds = []
   temp = []
-  
+
   rows.each do |row|
     i = 0
     columns.each do |column|
@@ -104,7 +103,6 @@ def get_values(third)
 end
 
 def exist_only?(array, rows, columns, location)
-  
   thirds = split_array(array, rows, columns)
   values = get_values(thirds)
   values_flat = values.flatten.uniq

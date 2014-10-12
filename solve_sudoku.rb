@@ -11,7 +11,6 @@ require_relative 'foo'
 require_relative 'validation'
 require_relative 'print_puzzle'
 
-
 def initial_setup(array)
 
   clear_all(array)
@@ -22,16 +21,15 @@ def initial_setup(array)
   array
 end
 
-
 def solve_puzzle(array)
   
-  check_sizes(array)
+  # check_sizes(array)
    
-  if (@size1 > 0)
+  # if @size1 > 0
     solve_for_one(array)
-  elsif @size2 > 0
+  # elsif @size2 > 0
     solve_for_two(array)
-  end
+  # end
   
   done = array.flatten.inject(0) { |total, value| total + value }
   @loops += 1
@@ -48,7 +46,6 @@ def solve_puzzle(array)
   end
 end
 
-
 array = generate_matrix(sudoku)
 
 initial_setup(array)
@@ -58,5 +55,3 @@ solve_puzzle(array)
 
 print_history
 print_final_puzzle(array)
-
-
