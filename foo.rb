@@ -23,7 +23,7 @@ def clear_box(array, rows, columns, third_with_value, value, index, location)
   rows.each do |row|
     columns.each do |column|
       temp_array << array[row][column]
-    end 
+    end
   end
    
   i = 0

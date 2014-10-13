@@ -2,4 +2,4 @@ Documentation:
   Enabled: false
 
 LineLength:
-  Max: 94
+  Max: 100

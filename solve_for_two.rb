@@ -24,7 +24,7 @@ def solve_for_twos(array, rows, columns, _location)
         end
       else ## clear 'trips' ([3,4], [3,7], [3,4,7])
         temp_array.each do |element2|
-          # # don't want to delete original
+          # don't want to delete original
           if element2.size == 2 && (element2 != element)
             if temp_array.include?((element + element2).uniq.sort)
               trips = (element + element2).uniq.sort

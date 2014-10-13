@@ -21,20 +21,24 @@ def initial_setup(array)
   array
 end
 
+def history
+  @history ||= []
+end
+
 def solve_puzzle(array)
   
   # check_sizes(array)
    
   # if @size1 > 0
-    solve_for_one(array)
+  solve_for_one(array)
   # elsif @size2 > 0
-    solve_for_two(array)
+  solve_for_two(array)
   # end
   
   done = array.flatten.inject(0) { |total, value| total + value }
   @loops += 1
 
-  if @loops == 50
+  if @loops == 75
     puts
     p "stopped after #{@loops} loops"
     return

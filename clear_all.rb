@@ -20,19 +20,17 @@ def build_temp_array(array, rows, columns)
   temp_array
 end
 
-def clear_puzzle(array, rows, columns, location = nil)
-
+def clear_puzzle(array, rows, columns, _location = :none)
   temp_array = build_temp_array(array, rows, columns)
   
   temp_array.each do |element|
-    if element.is_a?(Integer)
-      number = element
+    next if element.is_a?(Array)
 
-      temp_array.each do |value|
-        next if value.is_a?(Integer)
-        value.delete(number) if value.include?(number)
-        # end
-      end
+    number = element
+
+    temp_array.each do |value|
+      next if value.is_a?(Integer)
+      value.delete(number) if value.include?(number)
     end
   end
 end
