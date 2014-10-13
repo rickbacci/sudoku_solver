@@ -5,12 +5,11 @@ def total_numbers_remaining?(array)
 
   array.each do |row|
     row.each do |element|
-      unless element.is_a?(Integer)
-        temp_array << element
-        (1..9).each_with_index do |num, index|
-          @number_totals_remaining[index] += 1 if
-          element.flatten.include?(num)
-        end
+      next if element.is_a?(Integer)
+      temp_array << element
+      (1..9).each_with_index do |num, index|
+        @number_totals_remaining[index] += 1 if
+        element.flatten.include?(num)
       end
     end
   end

@@ -12,7 +12,6 @@ require_relative 'validation'
 require_relative 'print_puzzle'
 
 def initial_setup(array)
-
   clear_all(array)
   print_initial_puzzle(array)
   @history = []
@@ -25,29 +24,33 @@ def history
   @history ||= []
 end
 
-def solve_puzzle(array)
-  
-  # check_sizes(array)
-   
-  # if @size1 > 0
-  solve_for_one(array)
-  # elsif @size2 > 0
-  solve_for_two(array)
-  # end
-  
-  done = array.flatten.inject(0) { |total, value| total + value }
-  @loops += 1
+# def loops
+#   @loops
+# end
 
-  if @loops == 75
+def puzzle_finished?(array)
+  if @loops == 50
     puts
     p "stopped after #{@loops} loops"
-    return
-  elsif done == 405 && no_arrays?(array)
-    @history << "puzzle solved after #{@loops} recursions"
-    return
+  elsif add_puzzle(array) && no_arrays?(array)
+    history << "puzzle solved after #{@loops} recursions" << valid_puzzle?(array)
   else
     solve_puzzle(array)
   end
+end
+
+def add_puzzle(array)
+  array.flatten.reduce { |a, e| a + e } == 405
+end
+
+def solve_puzzle(array)
+  check_sizes(array)
+  solve_for_one(array)
+  solve_for_two(array)
+  
+  @loops += 1
+
+  puzzle_finished?(array)
 end
 
 array = generate_matrix(sudoku)
@@ -55,7 +58,6 @@ array = generate_matrix(sudoku)
 initial_setup(array)
 solve_puzzle(array)
 
-@history << valid_puzzle?(array)
 
 print_history
 print_final_puzzle(array)

@@ -45,7 +45,7 @@ def generate_matrix(sudoku)
     row << cell(char)
     
     if row.length == 9
-      puzzle << row 
+      puzzle << row
       row = []
     end
   end

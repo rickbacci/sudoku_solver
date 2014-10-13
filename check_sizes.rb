@@ -1,26 +1,26 @@
 
+def count_individual_sizes(element)
+  (1..4).each do |val|
+    if element.size == val
+      v = "@size#{val}"
+      v += 1
+      instance_variable_set("@size#{val}", v)
+      # size = "@size#{val}"
+      # size += 1
+    else
+      p 'error checking sizes'
+    end
+  end
+end
+
+# a.instance_variable_set("@hello", 7)
+
 def check_sizes(array)
-  @solved, @size1, @size2, @size3, @size4, @size5, @size6 = 0, 0, 0, 0, 0, 0, 0
+  @size1, @size2, @size3, @size4, @size5, @size6 = 0, 0, 0, 0, 0, 0
 
   array.each do |row|
     row.each do |element|
-      if element.size == 1
-        @size1 += 1
-      elsif element.size == 2
-        @size2 += 1
-      elsif element.size == 3
-        @size3 += 1
-      elsif element.size == 4
-        @size4 += 1
-      elsif element.size == 5
-        @size5 += 1
-      elsif element.size == 6
-        @size6 += 1
-      else
-        @solved += 1
-      end
+      count_individual_sizes(element)
     end
   end
-
-  lengths = [@size1, @size2, @size3, @size4, @size5, @size6]
 end
