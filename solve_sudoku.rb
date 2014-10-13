@@ -1,7 +1,6 @@
 require_relative 'generate_matrix'
 
 require_relative 'clear_all'
-require_relative 'check_sizes'
 require_relative 'total_numbers_remaining'
 require_relative 'ranges'
 require_relative 'solve_for_one'
