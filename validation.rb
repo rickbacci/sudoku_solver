@@ -16,7 +16,7 @@ def valid_puzzle?(array)
       total += element unless element.is_a?(Array)
     end
   end
-  total(total)
+  true if total == 405
 end
 
 def no_arrays?(array)

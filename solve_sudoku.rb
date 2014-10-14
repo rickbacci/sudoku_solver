@@ -23,31 +23,22 @@ def history
   @history ||= []
 end
 
-# def loops
-#   @loops
-# end
-
 def puzzle_finished?(array)
+  @loops += 1
+
   if @loops == 50
     puts
     p "stopped after #{@loops} loops"
-  elsif add_puzzle(array) && no_arrays?(array)
+  elsif valid_puzzle?(array) && no_arrays?(array)
     history << "puzzle solved after #{@loops} recursions" << valid_puzzle?(array)
   else
     solve_puzzle(array)
   end
 end
 
-def add_puzzle(array)
-  array.flatten.reduce { |a, e| a + e } == 405
-end
-
 def solve_puzzle(array)
   solve_for_one(array)
   solve_for_two(array)
-  
-  @loops += 1
-
   puzzle_finished?(array)
 end
 
@@ -55,7 +46,5 @@ array = Matrix.new.generate_matrix(SUDOKU)
 
 initial_setup(array)
 solve_puzzle(array)
-
-
 print_history
 print_final_puzzle(array)

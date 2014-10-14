@@ -4,7 +4,7 @@ def build_hash_of_numbers_remaining(number_totals_remaining)
   number_totals_remaining.each_with_index do |number, index|
     # p "There are #{number} #{index + 1}'s remaining in the puzzle"
     hash[index + 1] = number
-    puts if index == 8
+    # puts if index == 8
   end
   hash.sort { |a1, a2| a1[1] <=> a2[1] }
 end
@@ -29,6 +29,6 @@ def total_numbers_remaining?(array)
       end
     end
   end
-  p order = build_hash_of_numbers_remaining(number_totals_remaining)
+  order = build_hash_of_numbers_remaining(number_totals_remaining)
   sort_values(order)
 end
