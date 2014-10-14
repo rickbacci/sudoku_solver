@@ -1,4 +1,4 @@
-require_relative 'clear'
+# require_relative 'clear'
 
 class Puzzle
   attr_accessor :sudoku, :puzzle
@@ -28,20 +28,20 @@ class Puzzle
   def print_matrix
     puzzle.each do |p|
       p p
-    end 
+    end
   end
 end
 
 sudoku = '007300509300002000400080003600050030003000600090060002800030005000600004706001300'
 
-puzzle = Puzzle.new(sudoku)
+#puzzle = Puzzle.new(sudoku)
 
 
-puzzle.print_matrix
+#puzzle.print_matrix
 
-p puzzle.generate_matrix
+#p puzzle.generate_matrix
 
-test = Clear.new(puzzle)
+#test = Clear.new(puzzle)
 
-p test
+#p test
 

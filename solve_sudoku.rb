@@ -1,6 +1,9 @@
 require_relative 'generate_matrix'
 
-require_relative 'clear_all'
+require_relative 'common'
+
+require_relative 'puzzle'
+
 require_relative 'total_numbers_remaining'
 require_relative 'ranges'
 require_relative 'solve_for_one'
@@ -11,7 +14,7 @@ require_relative 'validation'
 require_relative 'print_puzzle'
 
 def initial_setup(array)
-  clear_all(array)
+  Common.clear_all(array)
   print_initial_puzzle(array)
   @history = []
   @loops = 0
@@ -39,6 +42,7 @@ end
 def solve_puzzle(array)
   solve_for_one(array)
   solve_for_two(array)
+
   puzzle_finished?(array)
 end
 

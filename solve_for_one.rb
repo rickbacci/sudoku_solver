@@ -32,7 +32,8 @@ def solve_for_ones(array, rows, columns, location)
             save_history(location, row, column, element, new_value, :solve_for_one__, :_array_size_1)
             
             @loop_once = 1
-            clear_all(array)
+            Common.clear_all(array)
+            # clear_all(array)
             return
           elsif flat_array.count(number) == 1
             new_value = number
@@ -40,7 +41,8 @@ def solve_for_ones(array, rows, columns, location)
             save_history(location, row, column, element, new_value, :solve_for_one__, :one_remaining)
 
             @loop_once = 1
-            clear_all(array)
+            # clear_all(array)
+            Common.clear_all(array)
             return
           end
         end
