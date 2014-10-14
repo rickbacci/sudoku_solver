@@ -43,7 +43,6 @@ def add_puzzle(array)
 end
 
 def solve_puzzle(array)
-  check_sizes(array)
   solve_for_one(array)
   solve_for_two(array)
   
@@ -52,7 +51,7 @@ def solve_puzzle(array)
   puzzle_finished?(array)
 end
 
-array = generate_matrix(sudoku)
+array = Matrix.new.generate_matrix(SUDOKU)
 
 initial_setup(array)
 solve_puzzle(array)

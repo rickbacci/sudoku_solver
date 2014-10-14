@@ -7,7 +7,7 @@
 # @sudoku = '020001089108003004060700000000000200500607003003000000000004030700900401940100070'
 # @sudoku = '100008309060040020209000000000500807000706000706003000000000705050010040904800006'
 
-@sudoku = '006080100080246070200050008002408600000000000900010003020000080400901006709060301'
+SUDOKU = '006080100080246070200050008002408600000000000900010003020000080400901006709060301'
 
 # very hard
 # @sudoku = '007000500050109060300050002500000007004000800890000016400060008002000600605743901'
@@ -24,30 +24,32 @@
 # @sudoku = '007300509300002000400080003600050030003000600090060002800030005000600004706001300'
 
 # mild
-# @sudoku = '200147008008000600000060000100503004730020065005000200001604800600982001903000406'
+# SUDOKU = '200147008008000600000060000100503004730020065005000200001604800600982001903000406'
 
-def sudoku
-  @sudoku
-end
+class Matrix
+  attr_reader :sudoku
 
-def cell(char)
-  if char == '0'
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  else
-    char.to_i
-  end
-end
-
-def generate_matrix(sudoku)
-  puzzle, row = [], []
-  sudoku.each_char do |char|
-
-    row << cell(char)
-    
-    if row.length == 9
-      puzzle << row
-      row = []
+  def fill_cell(value)
+    if value == '0'
+      return [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    else
+      value.to_i
     end
   end
-  puzzle
+
+  def generate_matrix(sudoku)
+    puzzle, row = [], []
+    sudoku.each_char do |char|
+
+      row << fill_cell(char)
+      
+      if row.length == 9
+        puzzle << row
+        row = []
+      end
+    end
+    puzzle
+  end
 end
+
+# Matrix.new.generate_matrix(@sudoku)
