@@ -1,4 +1,10 @@
 
+def print_initial_puzzle(array)
+  puts
+  array.each { |puzzle| p puzzle }
+  puts
+end
+
 def print_final_puzzle(array)
 
   puts '-------------------'
@@ -15,19 +21,12 @@ def print_final_puzzle(array)
   puts '-------------------'
 end
 
-def print_initial_puzzle(array)
-  puts
-  array.each { |puzzle| p puzzle }
-  puts
-end
-
 def print_history
   @history.each { |h| p h }
   puts
 end
 
 def save_history(location, row, column, element, new_value, method, reason)
-
   history << "#{location} [#{row}][#{column}] #{method} (#{reason}) --- " \
   " set from #{element} to #{new_value}"
 end

@@ -1,4 +1,4 @@
-module Common
+module Common # 'extend Common' in class
 
   def self.clear_all(array)
     solve_for_boxes(array, :clear_puzzle)
@@ -10,7 +10,7 @@ module Common
   end
 
   def self.clear_puzzle(array, rows, columns, _location = :none)
-    temp_array = Common.build_temp_array(array, rows, columns)
+    temp_array = build_temp_array(array, rows, columns)
     
     temp_array.each do |element|
       next if element.is_a?(Array)
@@ -34,9 +34,5 @@ module Common
     end
     temp_array
   end
-
 end
 
-# class A
-#   extend Common
-# end

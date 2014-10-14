@@ -1,8 +1,7 @@
 require_relative 'generate_matrix'
-
 require_relative 'common'
 
-require_relative 'puzzle'
+# require_relative 'puzzle'
 
 require_relative 'total_numbers_remaining'
 require_relative 'ranges'
