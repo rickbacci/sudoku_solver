@@ -6,7 +6,6 @@ end
 
 
 def solve_for_twos(array, rows, columns, _location)
-  # clear_all(array)
 
   temp_array = Common.build_temp_array(array, rows, columns)
 
@@ -56,7 +55,6 @@ def clear_value(array, rows, columns, element, element2, value)
       end
     end
   end
-  # clear_all(array)
   Common.clear_all(array)
   value = []
 end

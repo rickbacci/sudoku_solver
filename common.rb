@@ -1,6 +1,6 @@
 module Common # 'extend Common' in class
 
-  def self.clear_all(array)
+  def Common.clear_all(array)
     solve_for_boxes(array, :clear_puzzle)
     solve_for_rows(array, :clear_puzzle)
     solve_for_columns(array, :clear_puzzle)
@@ -9,7 +9,7 @@ module Common # 'extend Common' in class
     solve_for_columns(array, :exist_only?)
   end
 
-  def self.clear_puzzle(array, rows, columns, _location = :none)
+  def Common.clear_puzzle(array, rows, columns, _location = :none)
     temp_array = build_temp_array(array, rows, columns)
     
     temp_array.each do |element|
@@ -24,7 +24,7 @@ module Common # 'extend Common' in class
     end
   end
 
-  def self.build_temp_array(array, rows, columns)
+  def Common.build_temp_array(array, rows, columns)
     temp_array = []
 
     rows.each do |row|
@@ -34,5 +34,31 @@ module Common # 'extend Common' in class
     end
     temp_array
   end
+
+  # def save_history(location, row, column, element, new_value, method, reason)
+  #   history << "#{location} [#{row}][#{column}] #{method} (#{reason}) --- " \
+  #              " set from #{element} to #{new_value}"
+  # end
+
+  # def add_location_to_history(location, row, column)
+  #   "#{location} [#{row}][#{column}]"
+  # end
+
+  # def add_logic_to_history(method, reason)
+  #   " #{method} (#{reason}) --- "
+  # end
+
+  # def add_elements_to_history(element, new_value)
+  #   "set from #{element} to #{new_value}"
+  # end
+
+  # def save_history
+  #   string = ''
+  #   string << lambda { return add_location_to_history(location, row, column) }.call
+  #   string << lambda { return add_logic_to_history(method, reason) }.call
+  #   string << lambda { return add_elements_to_history(element, new_value) }
+               
+  #   history << string
+  # end
 end
 

@@ -22,11 +22,6 @@ def print_final_puzzle(array)
 end
 
 def print_history
-  @history.each { |h| p h }
+  history.each { |h| p h }
   puts
-end
-
-def save_history(location, row, column, element, new_value, method, reason)
-  history << "#{location} [#{row}][#{column}] #{method} (#{reason}) --- " \
-  " set from #{element} to #{new_value}"
 end
