@@ -20,6 +20,12 @@ def naked_singles(array)
   solve_for_columns(array, :naked_single)
 end
 
+def hidden_candidates(array)
+  solve_for_boxes(array, :hidden_candidate)
+  solve_for_rows(array, :hidden_candidate)
+  solve_for_columns(array, :hidden_candidate)
+end
+
 def solve_for_one(array, rows, columns, location)
   flat_array = build_flat_array(array, rows, columns)
 
@@ -42,15 +48,16 @@ def solve_for_one(array, rows, columns, location)
 
             # Common.clear_all(array)
             # return
-          elsif flat_array.count(number) == 1
+          # elsif flat_array.count(number) == 1
+          elsif build_flat_array(array, rows, columns).count(number) == 1
             
-            array[row][column] = number
+            # array[row][column] = number
 
-            history << "#{location} [#{row}][#{column}] :solve_for_one__ (:one_remaining) --- "\
-                       "set from #{element} to #{number}"
+            # history << "#{location} [#{row}][#{column}] :solve_for_one__ (:one_remaining) --- "\
+            #            "set from #{element} to #{number}"
 
-            Common.clear_all(array)
-            return
+            # Common.clear_all(array)
+            # return
           end
         end
       end
@@ -66,15 +73,38 @@ def naked_single(array, rows, columns, location)
       
       next if element.is_a?(Integer)
       next if element.size != 1
-      number = element[0]
 
+      number = element[0]
       array[row][column] = number
 
       history << "#{location} [#{row}][#{column}] :solve_for_one__ (:_array_size_1) --- " \
                    "set from #{element} to #{number}"
 
       Common.clear_all(array)
-      # return
+      return
+    end
+  end
+end
+
+def hidden_candidate(array, rows, columns, location)
+  (1..9).each do |number|
+    rows.each do |row|
+      columns.each do |column|
+
+        element = array[row][column]
+        
+        next if element.is_a?(Integer)
+        next if element.size == 1
+        next if build_flat_array(array, rows, columns).count(number) != 1
+
+        array[row][column] = number if element.include?(number)
+
+        history << "#{location} [#{row}][#{column}] :solve_for_one__ (:one_remaining) --- " \
+                     "set from #{element} to #{number}"
+
+        Common.clear_all(array)
+        return
+      end
     end
   end
 end

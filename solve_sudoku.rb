@@ -37,7 +37,8 @@ end
 
 def solve_puzzle(array)
   naked_singles(array)
-  solve_for_ones(array)
+  hidden_candidates(array)
+  # solve_for_ones(array)
   solve_for_twos(array)
 
   puzzle_finished?(array)
