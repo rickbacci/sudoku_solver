@@ -1,12 +1,12 @@
-def build_flat_array(array, rows, columns)
-  flat_array = []
-  rows.each do |row|
-    columns.each do |column|
-      flat_array << array[row][column] if array[row][column].is_a?(Array)
-    end
-  end
-  flat_array = flat_array.flatten
-end
+# def build_flat_array(array, rows, columns)
+#   flat_array = []
+#   rows.each do |row|
+#     columns.each do |column|
+#       flat_array << array[row][column] if array[row][column].is_a?(Array)
+#     end
+#   end
+#   flat_array = flat_array.flatten
+# end
 
 def naked_singles(array)
   solve_for_boxes(array, :naked_single)
@@ -50,7 +50,7 @@ def hidden_candidate(array, rows, columns, location)
         
         next if element.is_a?(Integer)
         next if element.size == 1
-        next if build_flat_array(array, rows, columns).count(number) != 1
+        next if Common.build_flat_array(array, rows, columns).count(number) != 1
 
         array[row][column] = number if element.include?(number)
 

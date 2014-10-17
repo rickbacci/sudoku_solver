@@ -35,6 +35,16 @@ module Common # 'extend Common' in class
     temp_array
   end
 
+  def Common.build_flat_array(array, rows, columns)
+  flat_array = []
+  rows.each do |row|
+    columns.each do |column|
+      flat_array << array[row][column] if array[row][column].is_a?(Array)
+    end
+  end
+  flat_array = flat_array.flatten
+end
+
   # def save_history(location, row, column, element, new_value, method, reason)
   #   history << "#{location} [#{row}][#{column}] #{method} (#{reason}) --- " \
   #              " set from #{element} to #{new_value}"

@@ -9,7 +9,6 @@ require_relative 'foo'
 require_relative 'validation'
 require_relative 'print_puzzle'
 
-
 def initial_setup(array)
   Common.clear_all(array)
   print_initial_puzzle(array)
