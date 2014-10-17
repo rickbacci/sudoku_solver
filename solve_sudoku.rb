@@ -1,8 +1,10 @@
 require_relative 'generate_matrix'
 require_relative 'common'
-
 require_relative 'ranges'
-require_relative 'solve_for_one'
+
+require_relative 'naked_singles'
+require_relative 'hidden_candidates'
+
 require_relative 'solve_for_two'
 require_relative 'foo'
 
@@ -37,7 +39,7 @@ end
 def solve_puzzle(array)
   naked_singles(array)
   hidden_candidates(array)
-  # solve_for_ones(array)
+
   solve_for_twos(array)
 
   puzzle_finished?(array)
