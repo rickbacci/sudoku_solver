@@ -12,14 +12,16 @@ def hidden_candidate(array, rows, columns, location)
         element = array[row][column]
         
         next if element.is_a?(Integer) || element.size == 1
-        next if Common.build_flat_array(array, rows, columns).count(number) != 1
 
-        array[row][column] = number if element.include?(number)
+        if Common.build_flat_array(array, rows, columns).count(number) == 1
+          if element.include?(number)
+            array[row][column] = number
 
-        history << "#{location} [#{row}][#{column}] :solve_for_one__ (:one_remaining) --- " \
-                     "set from #{element} to #{number}"
-
-        Common.clear_all(array)
+            history << "#{location} [#{row}][#{column}] :hidden_candidate --- " \
+                       "set from #{element} to #{number}"
+            Common.clear_all(array)
+          end
+        end
       end
     end
   end

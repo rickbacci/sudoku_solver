@@ -44,8 +44,6 @@ def solve_puzzle(array)
   naked_pairs(array)
   naked_trips(array)
 
-  #solve_for_twos(array)
-
   puzzle_finished?(array)
 end
 

@@ -17,7 +17,7 @@ def naked_single(array, rows, columns, location)
       number = element[0]
       array[row][column] = number
 
-      history << "#{location} [#{row}][#{column}] :solve_for_one__ (:_array_size_1) --- " \
+      history << "#{location} [#{row}][#{column}]     :naked_single --- " \
                    "set from #{element} to #{number}"
 
       Common.clear_all(array)

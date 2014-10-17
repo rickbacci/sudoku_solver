@@ -37,7 +37,7 @@ def clear_naked_trip(array, rows, columns, element, element2, value)
         
 
         if before != array[r][c]
-          history << "[#{r}][#{c}] clearing pair: #{value}...element before: #{before}," \
+          history << "[#{r}][#{c}] clearing trips: #{value}...element before: #{before}," \
                       " element after: #{array[r][c]}"
         end
       end
