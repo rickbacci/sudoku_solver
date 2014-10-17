@@ -14,13 +14,13 @@ def solve_for_two(array, rows, columns, _location)
     if element.size == 2 ## clear pairs ([1,3] and [1,3]) not pairs of 'trips'
     
       if temp_array.count(element) == 2 ## matching pair found
-        pair = element
-        temp_array.each do |element2|
-          if element2.is_a?(Array) && pair != element2
-            before = element2
-            clear_value(array, rows, columns, element, element2, pair)
-          end
-        end
+        # pair = element
+        # temp_array.each do |element2|
+        #   if element2.is_a?(Array) && pair != element2
+        #     before = element2
+        #   # clear_value(array, rows, columns, element, element2, pair)
+        #   end
+        # end
       else ## clear 'trips' ([3,4], [3,7], [3,4,7])
         temp_array.each do |element2|
           # don't want to delete original
@@ -36,33 +36,33 @@ def solve_for_two(array, rows, columns, _location)
   end
 end
 
-def clear_value(array, rows, columns, element, element2, value)
-  rows.each do |r|
-    columns.each do |c|
+# def clear_value(array, rows, columns, element, element2, value)
+#   rows.each do |r|
+#     columns.each do |c|
 
-      if array[r][c].is_a?(Array) && clear?(array[r][c], element, element2, value)
-        before = array[r][c]
+#       if array[r][c].is_a?(Array) && clear?(array[r][c], element, element2, value)
+#         before = array[r][c]
 
-        ## this needs fixed....should not be allowing matches.size > 3
+#         ## this needs fixed....should not be allowing matches.size > 3
         
-        array[r][c] -= value if value.size <= 3
+#         array[r][c] -= value if value.size <= 3
         
 
-        if before != array[r][c]
-          history << "[#{r}][#{c}] clearing #{value}...element before: #{before}," \
-                      " element after: #{array[r][c]}"
-        end
-      end
-    end
-  end
-  Common.clear_all(array)
-  value = []
-end
+#         if before != array[r][c]
+#           history << "[#{r}][#{c}] clearing #{value}...element before: #{before}," \
+#                       " element after: #{array[r][c]}"
+#         end
+#       end
+#     end
+#   end
+#   Common.clear_all(array)
+#   value = []
+# end
 
 
-def clear?(val, el1, el2, value)
-  return false if val == el1
-  return false if val == el2
-  return false if val == value
-  true
-end
+# def clear?(val, el1, el2, value)
+#   return false if val == el1
+#   return false if val == el2
+#   return false if val == value
+#   true
+# end
