@@ -1,7 +1,6 @@
 require_relative 'generate_matrix'
 require_relative 'common'
 
-# require_relative 'total_numbers_remaining'
 require_relative 'ranges'
 require_relative 'solve_for_one'
 require_relative 'solve_for_two'
@@ -14,7 +13,6 @@ require_relative 'print_puzzle'
 def initial_setup(array)
   Common.clear_all(array)
   print_initial_puzzle(array)
-  # @history = []
   @loops = 0
  
   array
@@ -38,8 +36,9 @@ def puzzle_finished?(array)
 end
 
 def solve_puzzle(array)
-  solve_for_one(array)
-  solve_for_two(array)
+  naked_singles(array)
+  solve_for_ones(array)
+  solve_for_twos(array)
 
   puzzle_finished?(array)
 end

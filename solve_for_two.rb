@@ -1,11 +1,11 @@
-def solve_for_two(array)
-  solve_for_boxes(array, :solve_for_twos)
-  solve_for_rows(array, :solve_for_twos)
-  solve_for_columns(array, :solve_for_twos)
+def solve_for_twos(array)
+  solve_for_boxes(array, :solve_for_two)
+  solve_for_rows(array, :solve_for_two)
+  solve_for_columns(array, :solve_for_two)
 end
 
 
-def solve_for_twos(array, rows, columns, _location)
+def solve_for_two(array, rows, columns, _location)
 
   temp_array = Common.build_temp_array(array, rows, columns)
 
@@ -49,7 +49,7 @@ def clear_value(array, rows, columns, element, element2, value)
         
 
         if before != array[r][c]
-          @history << "[#{r}][#{c}] clearing #{value}...element before: #{before}," \
+          history << "[#{r}][#{c}] clearing #{value}...element before: #{before}," \
                       " element after: #{array[r][c]}"
         end
       end
