@@ -4,7 +4,7 @@ def naked_pairs(array)
   solve_for_columns(array, :naked_pair)
 end
 
-def naked_pair(array, rows, columns, _location)
+def naked_pair(array, rows, columns, location)
   temp_array = Common.build_temp_array(array, rows, columns)
 
   temp_array.each do |element|
@@ -13,13 +13,13 @@ def naked_pair(array, rows, columns, _location)
     temp_array.each do |element2|
       if element2.is_a?(Array) && pair != element2
         before = element2
-        clear_naked_pair(array, rows, columns, element, element2, pair)
+        clear_naked_pair(location, array, rows, columns, element, element2, pair)
       end
     end
   end
 end
 
-def clear_naked_pair(array, rows, columns, element, element2, value)
+def clear_naked_pair(location, array, rows, columns, element, element2, value)
   rows.each do |r|
     columns.each do |c|
 
@@ -28,19 +28,19 @@ def clear_naked_pair(array, rows, columns, element, element2, value)
 
         # this needs fixed....should not be allowing matches.size > 3
         array[r][c] -= value
-        
+        Common.clear_all(array)
+
 
         if before != array[r][c]
-          history << "[#{r}][#{c}] clearing pair: #{value}...element before: #{before}," \
-                      " element after: #{array[r][c]}"
+          history << "#{location} [#{r}][#{c}]       :naked_pair --- clearing:#{value} " \
+                      "before: #{before}, element after: #{array[r][c]}"
         end
       end
     end
   end
-  Common.clear_all(array)
-  value = []
+  # Common.clear_all(array)
+  value = [] # why?
 end
-
 
 def clear?(val, el1, el2, value)
   return false if val == el1

@@ -27,7 +27,7 @@ end
 def puzzle_finished?(array)
   @loops += 1
 
-  if @loops == 50
+  if @loops == 75
     puts
     p "stopped after #{@loops} loops"
   elsif valid_puzzle?(array) && no_arrays?(array)

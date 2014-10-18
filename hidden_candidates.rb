@@ -5,23 +5,21 @@ def hidden_candidates(array)
 end
 
 def hidden_candidate(array, rows, columns, location)
-  (1..9).each do |number|
-    rows.each do |row|
-      columns.each do |column|
+  number = Common.hidden_candidate?(array, rows, columns)
+  return if number.nil?
+  rows.each do |row|
+    columns.each do |column|
 
-        element = array[row][column]
-        
-        next if element.is_a?(Integer) || element.size == 1
+      element = array[row][column]
+      
+      next if element.is_a?(Integer) || element.size == 1
 
-        if Common.build_flat_array(array, rows, columns).count(number) == 1
-          if element.include?(number)
-            array[row][column] = number
+      if element.include?(number)
+        array[row][column] = number
 
-            history << "#{location} [#{row}][#{column}] :hidden_candidate --- " \
-                       "set from #{element} to #{number}"
-            Common.clear_all(array)
-          end
-        end
+        history << "#{location} [#{row}][#{column}] :hidden_candidate --- " \
+                   "set from #{element} to #{number}"
+        Common.clear_all(array)
       end
     end
   end

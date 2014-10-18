@@ -14,11 +14,10 @@ def naked_single(array, rows, columns, location)
       
       next if element.is_a?(Integer) || element.size != 1
 
-      number = element[0]
-      array[row][column] = number
+      array[row][column] = element[0]
 
       history << "#{location} [#{row}][#{column}]     :naked_single --- " \
-                   "set from #{element} to #{number}"
+                   "set from #{element} to #{element[0]}"
 
       Common.clear_all(array)
     end

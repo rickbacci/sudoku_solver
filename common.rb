@@ -1,6 +1,6 @@
 module Common # 'extend Common' in class
 
-  def Common.clear_all(array)
+  def self.clear_all(array)
     solve_for_boxes(array, :clear_puzzle)
     solve_for_rows(array, :clear_puzzle)
     solve_for_columns(array, :clear_puzzle)
@@ -9,7 +9,7 @@ module Common # 'extend Common' in class
     solve_for_columns(array, :exist_only?)
   end
 
-  def Common.clear_puzzle(array, rows, columns, _location = :none)
+  def self.clear_puzzle(array, rows, columns, _location)
     temp_array = build_temp_array(array, rows, columns)
     
     temp_array.each do |element|
@@ -24,7 +24,7 @@ module Common # 'extend Common' in class
     end
   end
 
-  def Common.build_temp_array(array, rows, columns)
+  def self.build_temp_array(array, rows, columns)
     temp_array = []
 
     rows.each do |row|
@@ -35,14 +35,24 @@ module Common # 'extend Common' in class
     temp_array
   end
 
-  def Common.build_flat_array(array, rows, columns)
-  flat_array = []
+  def self.build_flat_array(array, rows, columns)
+    flat_array = []
+
     rows.each do |row|
       columns.each do |column|
         flat_array << array[row][column] if array[row][column].is_a?(Array)
       end
     end
-  flat_array = flat_array.flatten
+
+    flat_array = flat_array.flatten
+  end
+
+  def self.hidden_candidate?(array, rows, columns)
+    flat_array = build_flat_array(array, rows, columns)
+    (1..9).each do |number|
+      return number if flat_array.count(number) == 1
+    end
+    nil
   end
 
   # def save_history(location, row, column, element, new_value, method, reason)
