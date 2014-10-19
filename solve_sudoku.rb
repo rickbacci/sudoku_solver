@@ -6,6 +6,7 @@ require_relative 'naked_singles'
 require_relative 'hidden_candidates'
 require_relative 'naked_pairs'
 require_relative 'naked_trips'
+require_relative 'naked_quads'
 
 require_relative 'foo'
 
@@ -43,6 +44,7 @@ def solve_puzzle(array)
 
   naked_pairs(array)
   naked_trips(array)
+  naked_quads(array)
 
   puzzle_finished?(array)
 end
