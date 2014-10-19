@@ -55,37 +55,45 @@ def naked_quad?(quad, temp_array)
     next if element.is_a?(Integer)
     values << element if (element - quad) == []
   end
-  
-  
+
   return quad if values.length == quad.length
   nil
 end
 
-def naked_quad(array, rows, columns, _location)
+def remaining_numbers(quad)
+  [1, 2, 3, 4, 5, 6, 7, 8, 9] - quad
+end
+
+def naked_quad(array, rows, columns, location)
   temp_array = Common.build_temp_array(array, rows, columns)
+
+  def location
+    @location
+  end
 
   rows.each do |row|
     columns.each do |column|
 
       element = array[row][column]
+      quad = naked_quad?(element, temp_array) if element.size == 4
 
-      if element.size == 4
-        quad = naked_quad?(element, temp_array)
-      end
-
-      numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-      remaining_numbers = numbers - quad unless quad.nil?
-        
-      
       next if quad.nil?
-      remaining_numbers.each do |number|
+
+      remaining_numbers(quad).each do |number|
         rows.each do |row|
           columns.each do |column|
+
             element = array[row][column]
+
             next if element.is_a?(Integer)
+
             if element.include?(number)
-              history <<  "before: #{element}  after: #{(element -= quad)} "
+              history << "#{location} [#{row}][#{column}]       :naked_quad --- " \
+                   "clearing before: #{element} after: #{(element -= quad)}"
+              Common.clear_all(array)
+              #history <<  "before: #{element}  after: #{(element -= quad)} "
               array[row][column] = element
+
             end
           end
         end
