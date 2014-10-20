@@ -64,12 +64,33 @@ def remaining_numbers(quad)
   [1, 2, 3, 4, 5, 6, 7, 8, 9] - quad
 end
 
+def location
+  @location
+end
+
+def clear_naked_quad(array, rows, columns, quad, location)
+  remaining_numbers(quad).each do |number|
+    rows.each do |row|
+      columns.each do |column|
+
+        element = array[row][column]
+
+        next unless element.is_a?(Array) && element.include?(number)
+
+        unless element == (element - quad)
+          history << "#{location} [#{row}][#{column}]       :naked_quad --- " \
+                   "clearing #{quad} before: #{element} after: #{element -= quad}"
+        end
+
+        Common.clear_all(array)
+        array[row][column] = element
+      end
+    end
+  end
+end
+
 def naked_quad(array, rows, columns, location)
   temp_array = Common.build_temp_array(array, rows, columns)
-
-  def location
-    @location
-  end
 
   rows.each do |row|
     columns.each do |column|
@@ -79,25 +100,7 @@ def naked_quad(array, rows, columns, location)
 
       next if quad.nil?
 
-      remaining_numbers(quad).each do |number|
-        rows.each do |row|
-          columns.each do |column|
-
-            element = array[row][column]
-
-            next if element.is_a?(Integer)
-
-            if element.include?(number)
-              history << "#{location} [#{row}][#{column}]       :naked_quad --- " \
-                   "clearing before: #{element} after: #{(element -= quad)}"
-              Common.clear_all(array)
-              #history <<  "before: #{element}  after: #{(element -= quad)} "
-              array[row][column] = element
-
-            end
-          end
-        end
-      end
+      clear_naked_quad(array, rows, columns, quad, location)
     end
   end
 end

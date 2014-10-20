@@ -1,7 +1,7 @@
 def naked_singles(array)
-  # solve_for_boxes(array, :naked_single)
+  solve_for_boxes(array, :naked_single)
   solve_for_rows(array, :naked_single)
-  # solve_for_columns(array, :naked_single)
+  solve_for_columns(array, :naked_single)
 end
 
 

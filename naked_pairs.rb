@@ -32,7 +32,7 @@ def clear_naked_pair(location, array, rows, columns, element, element2, value)
 
 
         if before != array[r][c]
-          history << "#{location} [#{r}][#{c}]       :naked_pair --- clearing:#{value} " \
+          history << "#{location} [#{r}][#{c}]       :naked_pair --- clearing #{value} " \
                       "before: #{before}, element after: #{array[r][c]}"
         end
       end
