@@ -4,53 +4,58 @@ def naked_trips(array)
   solve_for_columns(array, :naked_trip)
 end
 
+def naked_trip?(trip, temp_array)
+  values = []
+  temp_array.each do |element|
+    next if element.is_a?(Integer)
+    values << element if (element - trip) == []
+  end
 
-def naked_trip(array, rows, columns, _location)
+  return trip if values.length == trip.length
+  nil
+end
+
+def remaining_numbers(trip)
+  [1, 2, 3, 4, 5, 6, 7, 8, 9] - trip
+end
+
+def location
+  @location
+end
+
+def clear_naked_trip(array, rows, columns, trip, location)
+  remaining_numbers(trip).each do |number|
+    rows.each do |row|
+      columns.each do |column|
+
+        element = array[row][column]
+
+        next unless element.is_a?(Array) && element.include?(number)
+
+        unless element == (element - trip)
+          history << "#{location} [#{row}][#{column}]       :naked_trip --- " \
+                   "clearing #{trip} before: #{element} after: #{element -= trip}"
+        end
+
+        Common.clear_all(array)
+        array[row][column] = element
+      end
+    end
+  end
+end
+
+def naked_trip(array, rows, columns, location)
   temp_array = Common.build_temp_array(array, rows, columns)
 
-  temp_array.each do |element|
-    next if element.size != 2 || temp_array.count(element) != 2
+  rows.each do |row|
+    columns.each do |column|
 
-    temp_array.each do |element2|
-      next if element.size != 2 || temp_array.count(element) != 2
+      element = array[row][column]
+      trip = naked_trip?(element, temp_array) if element.size == 3
 
-      # don't want to delete original
-      if element2.size == 2 && (element2 != element)
-        if temp_array.include?((element + element2).uniq.sort)
-          trips = (element + element2).uniq.sort
-          clear_naked_trip(array, rows, columns, element, element2, trips)
-        end
-      end
+      next if trip.nil?
+
+      clear_naked_trip(array, rows, columns, trip, location)
     end
   end
-end
-
-def clear_naked_trip(array, rows, columns, element, element2, value)
-  rows.each do |r|
-    columns.each do |c|
-
-      if array[r][c].is_a?(Array) && clear?(array[r][c], element, element2, value)
-        before = array[r][c]
-
-        # this needs fixed....should not be allowing matches.size > 3
-        array[r][c] -= value
-        
-
-        #if before != array[r][c]
-          history << "[#{r}][#{c}] clearing trips: #{value}...element before: #{before}," \
-                      " element after: #{array[r][c]}"
-        #end
-      end
-    end
-  end
-  Common.clear_all(array)
-  value = []
-end
-
-
-def clear?(val, el1, el2, value)
-  return false if val == el1
-  return false if val == el2
-  return false if val == value
-  true
 end

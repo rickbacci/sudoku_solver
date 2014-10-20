@@ -46,7 +46,8 @@ end
 
 def naked_quad(array, rows, columns, location)
   temp_array = Common.build_temp_array(array, rows, columns)
-
+  # [2, 4, 5, 7]
+  # [8, [1, 6, 7], [4, 5], [3, 5, 6], [2, 3, 7, 9], [2, 5, 7], [2, 7], [1, 9], [4, 7]]
   rows.each do |row|
     columns.each do |column|
 
@@ -59,3 +60,4 @@ def naked_quad(array, rows, columns, location)
     end
   end
 end
+

@@ -55,3 +55,16 @@ initial_setup(array)
 solve_puzzle(array)
 print_history
 print_final_puzzle(array)
+
+string = ''
+array.each do |value|
+  value.each do |val|
+    if val.is_a?(Integer)
+      string << val.to_s
+    else
+      string << '0'
+    end
+  end
+end
+
+p string
