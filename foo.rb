@@ -1,5 +1,5 @@
 # the only possible 9's in row6 are in box7...so
-# all other 9's in box7 can be cleared.
+# all other 9's in box7 can be cleared.  
 
 def clear_value2(array, rows, columns, value, location)
   row_to_exclude = location[-1].to_i

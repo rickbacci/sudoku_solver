@@ -7,9 +7,9 @@ require_relative 'hidden_candidates'
 require_relative 'naked_pairs'
 require_relative 'naked_trips'
 require_relative 'naked_quads'
-
+ 
 require_relative 'foo'
-
+ 
 require_relative 'validation'
 require_relative 'print_puzzle'
 
@@ -17,7 +17,7 @@ def initial_setup(array)
   Common.clear_all(array)
   print_initial_puzzle(array)
   @loops = 0
- 
+  
   array
 end
 
@@ -28,7 +28,7 @@ end
 def puzzle_finished?(array)
   @loops += 1
 
-  if @loops == 75
+  if @loops == 25
     puts
     p "stopped after #{@loops} loops"
   elsif valid_puzzle?(array) && no_arrays?(array)
@@ -55,6 +55,8 @@ initial_setup(array)
 solve_puzzle(array)
 print_history
 print_final_puzzle(array)
+
+Common.clear_all(array)
 
 string = ''
 array.each do |value|

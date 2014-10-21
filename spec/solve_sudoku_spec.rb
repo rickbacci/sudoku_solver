@@ -1,13 +1,13 @@
 # require_relative 'spec_helper'
 require_relative '../generate_matrix'
 
-
+ 
 describe 'the matrix' do
   it 'has a certain length' do
-    SUDOKU.length.should == 81
+    SUDOKU.length.should == 81  
   end
 
-  
+    
 end
 # target.should equal <value>
 # target.should_not equal <value>
