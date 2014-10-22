@@ -13,6 +13,8 @@ require_relative 'foo'
 require_relative 'validation'
 require_relative 'print_puzzle'
 
+
+
 def initial_setup(array)
   Common.clear_all(array)
   print_initial_puzzle(array)
@@ -58,15 +60,19 @@ print_final_puzzle(array)
 
 Common.clear_all(array)
 
-string = ''
+
+def string
+  @string
+end
+
+@string = ''
 array.each do |value|
   value.each do |val|
     if val.is_a?(Integer)
-      string << val.to_s
+      @string << val.to_s
     else
-      string << '0'
+      @string << '0'
     end
   end
 end
-
-p string
+p @string

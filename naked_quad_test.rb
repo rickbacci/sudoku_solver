@@ -30,10 +30,10 @@ end
 
 possible_quads = possible_combinations(array)
 
-# puts
-# possible_quads.each do |p|
-#   p p.sort!
-# end
+puts
+possible_quads.each do |p|
+  p p.sort!
+end
 
 
 def naked_quad?(array, possible_quads)

@@ -61,6 +61,19 @@ def clear_naked_quad(array, rows, columns, quad, location)
   end
 end
 
+
+def temp_array
+  @temp_array
+end
+
+def possible_quads
+  @possible_quads
+end
+
+def quad
+  @quad
+end
+
 def naked_quad(array, rows, columns, location)
   temp_array = Common.build_temp_array(array, rows, columns)
   possible_quads = possible_combinations(temp_array)
