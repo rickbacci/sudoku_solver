@@ -1,4 +1,4 @@
-def hidden_candidates(array)
+def hidden_candidates
   solve_for_boxes(array, :hidden_candidate)
   solve_for_rows(array, :hidden_candidate)
   solve_for_columns(array, :hidden_candidate)
@@ -17,7 +17,7 @@ def hidden_candidate(array, rows, columns, location)
       if element.include?(number)
         array[row][column] = number
 
-        history << "#{location} [#{row}][#{column}] :hidden_candidate --- " \
+        @history << "#{location} [#{row}][#{column}] :hidden_candidate --- " \
                    "set from #{element} to #{number}"
         Common.clear_all(array)
       end

@@ -43,7 +43,6 @@ module Common # 'extend Common' in class
         flat_array << array[row][column] if array[row][column].is_a?(Array)
       end
     end
-
     flat_array = flat_array.flatten
   end
 
@@ -55,30 +54,37 @@ module Common # 'extend Common' in class
     nil
   end
 
-  # def save_history(location, row, column, element, new_value, method, reason)
-  #   history << "#{location} [#{row}][#{column}] #{method} (#{reason}) --- " \
-  #              " set from #{element} to #{new_value}"
-  # end
-
-  # def add_location_to_history(location, row, column)
-  #   "#{location} [#{row}][#{column}]"
-  # end
-
-  # def add_logic_to_history(method, reason)
-  #   " #{method} (#{reason}) --- "
-  # end
-
-  # def add_elements_to_history(element, new_value)
-  #   "set from #{element} to #{new_value}"
-  # end
-
-  # def save_history
-  #   string = ''
-  #   string << lambda { return add_location_to_history(location, row, column) }.call
-  #   string << lambda { return add_logic_to_history(method, reason) }.call
-  #   string << lambda { return add_elements_to_history(element, new_value) }
-               
-  #   history << string
-  # end
+  def self.print_history
+    Sudoku.history.each { |h| p h } 
+  end
 end
+
+# def save_history(location, row, column, element, new_value, method, reason)
+#   history << "#{location} [#{row}][#{column}] #{method} (#{reason}) --- " \
+#              " set from #{element} to #{new_value}"
+# end
+
+# def add_location_to_history(location, row, column)
+#   "#{location} [#{row}][#{column}]"
+# end
+
+# def add_logic_to_history(method, reason)
+#   " #{method} (#{reason}) --- "
+# end
+
+# def add_elements_to_history(element, new_value)
+#   "set from #{element} to #{new_value}"
+# end
+
+# def save_history
+#   string = ''
+#   string << lambda { return add_location_to_history(location, row, column) }.call
+#   string << lambda { return add_logic_to_history(method, reason) }.call
+#   string << lambda { return add_elements_to_history(element, new_value) }
+           
+#   history << string
+# end
+
+
+
 

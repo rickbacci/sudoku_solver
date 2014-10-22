@@ -1,4 +1,4 @@
-def naked_pairs(array)
+def naked_pairs
   solve_for_boxes(array, :naked_pair)
   solve_for_rows(array, :naked_pair)
   solve_for_columns(array, :naked_pair)
@@ -33,7 +33,7 @@ def clear_naked_pair(array, rows, columns, pair, location)
         next unless element.is_a?(Array) && element.include?(number)
 
         unless element == (element - pair)
-          history << "#{location} [#{row}][#{column}]       :naked_pair --- " \
+          @history << "#{location} [#{row}][#{column}]       :naked_pair --- " \
                    "clearing #{pair} before: #{element} after: #{element -= pair}"
         end
 

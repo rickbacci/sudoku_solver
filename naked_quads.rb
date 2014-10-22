@@ -1,4 +1,4 @@
-def naked_quads(array)
+def naked_quads
   solve_for_boxes(array, :naked_quad)
   solve_for_rows(array, :naked_quad)
   solve_for_columns(array, :naked_quad)
@@ -50,7 +50,7 @@ def clear_naked_quad(array, rows, columns, quad, location)
         next unless element.is_a?(Array) && element.include?(number)
 
         unless element == (element - quad)
-          history << "#{location} [#{row}][#{column}]       :naked_quad --- " \
+          @history << "#{location} [#{row}][#{column}]       :naked_quad --- " \
                    "clearing #{quad} before: #{element} after: #{element -= quad}"
         end
 

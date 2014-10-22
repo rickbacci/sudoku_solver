@@ -1,5 +1,3 @@
-# the only possible 9's in row6 are in box7...so
-# all other 9's in box7 can be cleared.  
 
 def clear_value2(array, rows, columns, value, location)
   row_to_exclude = location[-1].to_i
@@ -10,8 +8,8 @@ def clear_value2(array, rows, columns, value, location)
         before = array[row][column]
         array[row][column] -= [value]
 
-        if before != array[row][column]
-          history << "#{location} [#{row}][#{column}] :clear_box (:values_in_row) --- " \
+        if before != array[row][column] ## Sudoku.history
+          Sudoku.history << "#{location} [#{row}][#{column}] :clear_box (:values_in_row) --- " \
                        "set from #{before} to #{value}"
         end
       end
@@ -27,7 +25,7 @@ def clear_box(array, rows, columns, third_with_value, value, index, location)
     end
   end
    
-  i = 0
+ 
   tmp = []
   temp_array.each do |val|
     tmp << val

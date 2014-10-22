@@ -1,5 +1,6 @@
 
 def print_initial_puzzle(array)
+  p sudoku
   puts
   array.each { |puzzle| p puzzle }
   puts
@@ -22,6 +23,6 @@ def print_final_puzzle(array)
 end
 
 def print_history
-  history.each { |h| p h }
+  @history.each { |h| p h }
   puts
 end

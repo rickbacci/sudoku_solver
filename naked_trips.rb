@@ -1,4 +1,4 @@
-def naked_trips(array)
+def naked_trips
   solve_for_boxes(array, :naked_trip)
   solve_for_rows(array, :naked_trip)
   solve_for_columns(array, :naked_trip)
@@ -33,7 +33,7 @@ def clear_naked_trip(array, rows, columns, trip, location)
         next unless element.is_a?(Array) && element.include?(number)
 
         unless element == (element - trip)
-          history << "#{location} [#{row}][#{column}]       :naked_trip --- " \
+          @history << "#{location} [#{row}][#{column}]       :naked_trip --- " \
                    "clearing #{trip} before: #{element} after: #{element -= trip}"
         end
 

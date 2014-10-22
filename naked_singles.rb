@@ -1,4 +1,4 @@
-def naked_singles(array)
+def naked_singles
   solve_for_boxes(array, :naked_single)
   solve_for_rows(array, :naked_single)
   solve_for_columns(array, :naked_single)
@@ -16,7 +16,7 @@ def naked_single(array, rows, columns, location)
 
       array[row][column] = element[0]
 
-      history << "#{location} [#{row}][#{column}]     :naked_single --- " \
+      @history << "#{location} [#{row}][#{column}]     :naked_single --- " \
                    "set from #{element} to #{element[0]}"
 
       Common.clear_all(array)

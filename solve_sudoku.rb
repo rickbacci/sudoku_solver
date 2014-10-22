@@ -13,66 +13,82 @@ require_relative 'foo'
 require_relative 'validation'
 require_relative 'print_puzzle'
 
+class Sudoku
+  # extend Common
+  attr_accessor :sudoku, :array, :history
 
-
-def initial_setup(array)
-  Common.clear_all(array)
-  print_initial_puzzle(array)
-  @loops = 0
-  
-  array
-end
-
-def history
-  @history ||= []
-end
-
-def puzzle_finished?(array)
-  @loops += 1
-
-  if @loops == 25
-    puts
-    p "stopped after #{@loops} loops"
-  elsif valid_puzzle?(array) && no_arrays?(array)
-    @history << "puzzle solved after #{@loops} recursions" << valid_puzzle?(array)
-  else
-    solve_puzzle(array)
+  def initialize(sudoku)
+    @sudoku = sudoku
+    @array = Matrix.new.generate_matrix(sudoku)
+    @loops = 0
+    @history = []
+    @string = ''
   end
-end
 
-def solve_puzzle(array)
-  naked_singles(array)
-  hidden_candidates(array)
+  def initial_setup
+    Common.clear_all(array)
+    print_initial_puzzle(array)
+  end
 
-  naked_pairs(array)
-  naked_trips(array)
-  naked_quads(array)
+  def self.history
+    @history ||= []
+  end
 
-  puzzle_finished?(array)
-end
+  def puzzle_finished?
+    @loops += 1
 
-array = Matrix.new.generate_matrix(SUDOKU)
+    if @loops == 25
+      puts
+      p "stopped after #{@loops} loops"
+    elsif valid_puzzle?(array) && no_arrays?(array)
+      array.to_a.each { |a| p a }
+      puts
+      @history << "puzzle solved after #{@loops} recursions"# << valid_puzzle?(array)
+      print_history
+      print_final_puzzle(@array)
 
-initial_setup(array)
-solve_puzzle(array)
-print_history
-print_final_puzzle(array)
-
-Common.clear_all(array)
-
-
-def string
-  @string
-end
-
-@string = ''
-array.each do |value|
-  value.each do |val|
-    if val.is_a?(Integer)
-      @string << val.to_s
     else
-      @string << '0'
+      solve_puzzle
     end
   end
+
+  def solve_puzzle
+    naked_singles
+    hidden_candidates
+    naked_pairs
+    naked_trips
+    naked_quads
+
+    puzzle_finished?
+  end
+
+  # def string
+  #   @string
+  # end
+
+  def final_string
+  string = ''
+
+  array.each do |value|
+    value.each do |val|
+      if val.is_a?(Integer)
+        string << val.to_s
+      else
+        string << '0'
+      end
+    end
+  end
+  string
+  end
 end
-p @string
+
+# SUDOKU = '000000300001900500560310094100600428004000709270004003040068035002005900000000000'
+# puzzle = Sudoku.new(SUDOKU)
+
+puzzle = Sudoku.new('000000300001900500560310094100600428004000709270004003040068035002005900000000000')
+
+puzzle.initial_setup
+puzzle.solve_puzzle
+p puzzle.final_string
+
+
