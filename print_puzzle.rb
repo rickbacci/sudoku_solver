@@ -1,6 +1,5 @@
 
 def print_initial_puzzle(array)
-  p sudoku
   puts
   array.each { |puzzle| p puzzle }
   puts
