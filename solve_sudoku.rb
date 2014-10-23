@@ -15,7 +15,7 @@ require_relative 'print_puzzle'
 
 class Sudoku
   # extend Common
-  attr_accessor :sudoku, :array, :history, :string
+  attr_accessor :sudoku, :array, :history, :string, :area
 
   def initialize(sudoku)
     @sudoku = sudoku
@@ -44,6 +44,8 @@ class Sudoku
     if @loops == 25
       puts
       p "stopped after #{@loops} loops"
+      print_history
+
     elsif valid_puzzle?(array) && no_arrays?(array)
       array.to_a.each { |a| p a }
       puts
@@ -52,18 +54,24 @@ class Sudoku
       print_final_puzzle(@array)
 
     else
-      solve_puzzle
+      solve_puzzle(:all)
     end
   end
 
-  def solve_puzzle
-    naked_singles
-    hidden_candidates
-    naked_pairs
-    naked_trips
-    naked_quads
+  def solve_puzzle(area = :all)
+    if area == :all
+      naked_singles
+      hidden_candidates
+      naked_pairs
+      naked_trips
+      naked_quads
 
-    puzzle_finished?
+      puzzle_finished?
+    else
+      send(area)
+      print_history
+      array.to_a.each { |a| p a }
+    end
   end
 
   def final_string
@@ -80,14 +88,15 @@ class Sudoku
   end
 end
 
-# SUDOKU = '000000300001900500560310094100600428004000709270004003040068035002005900000000000'
-# puzzle = Sudoku.new(SUDOKU)
+ #SUDOKU = '000000300001900500560310094100600428004000709270004003040068035002005900000000000'
+ puzzle = Sudoku.new(SUDOKU)
 
-puzzle = Sudoku.new('000000300001900500560310094100600428004000709270004003040068035002005900000000000')
+# puzzle = Sudoku.new('000000300001900500560310094100600428004000709270004003040068035002005900000000000')
 
 p puzzle.initial_string
 puzzle.initial_setup
-puzzle.solve_puzzle
+puzzle.solve_puzzle(:hidden_candidates)
+
 p puzzle.final_string
 
 
