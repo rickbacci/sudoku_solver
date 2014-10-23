@@ -58,8 +58,8 @@ class Sudoku
     end
   end
 
-  def solve_puzzle(area = :all)
-    if area == :all
+  def solve_puzzle(type = :all)
+    if type == :all
       naked_singles
       hidden_candidates
       naked_pairs
@@ -68,7 +68,7 @@ class Sudoku
 
       puzzle_finished?
     else
-      send(area)
+      send(type)
       print_history
       array.to_a.each { |a| p a }
     end
