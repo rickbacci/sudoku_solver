@@ -9,8 +9,8 @@ def clear_value2(array, rows, columns, value, location)
         array[row][column] -= [value]
 
         if before != array[row][column] ## Sudoku.history
-          Sudoku.history << "#{location} [#{row}][#{column}] :clear_box (:values_in_row) --- " \
-                       "set from #{before} to #{value}"
+          Sudoku.history("#{location} [#{row}][#{column}] :clear_box (:values_in_row) --- " \
+                       "set from #{before} to #{value}")
         end
       end
     end

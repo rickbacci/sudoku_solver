@@ -61,7 +61,6 @@ def clear_naked_quad(array, rows, columns, quad, location)
   end
 end
 
-
 def temp_array
   @temp_array
 end
@@ -82,4 +81,3 @@ def naked_quad(array, rows, columns, location)
 
   clear_naked_quad(array, rows, columns, quad, location) unless quad.nil?
 end
-
