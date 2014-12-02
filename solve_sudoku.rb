@@ -45,39 +45,39 @@ class Sudoku
     @history << line
   end
 
-  def puzzle_finished?
+  def puzzle_finished?(type)
     @loops += 1
 
     if @loops == 25
       puts
       p "stopped after #{@loops} loops"
-      print_history
+      print_history unless type == :test_all
 
     elsif valid_puzzle?(array) && no_arrays?(array)
       # array.to_a.each { |a| p a }
       puts
       history=("puzzle solved after #{@loops} recursions") # << valid_puzzle?(array)
-      print_history
-      print_final_puzzle(array)
+      print_history unless type == :test_all
+      print_final_puzzle(array) unless type == :test_all
 
     else
-      solve_puzzle
+      solve_puzzle(type)
     end
   end
 
   def solve_puzzle(type = :all)
-    if type == :all
+    if type == :all or type == :test_all
       naked_singles
       hidden_candidates
       naked_pairs
       naked_trips
       naked_quads
 
-      puzzle_finished?
+      puzzle_finished?(type)
     else
       send(type)
-      print_history
-      array.to_a.each { |a| p a }
+      print_history unless type == :test_all
+      #array.to_a.each { |a| p a }
     end
   end
 
@@ -101,6 +101,5 @@ end
 p puzzle.initial_string
 puzzle.initial_setup
 puzzle.solve_puzzle
-# puzzle.solve_puzzle
 
 p puzzle.final_string
