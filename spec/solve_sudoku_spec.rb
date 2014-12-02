@@ -17,11 +17,11 @@ require_relative '../print_puzzle'
 
  
 describe 'the matrix' do
-  it 'has a certain length' do
-    puzzle = Sudoku.new(@sudoku)
-    @array = Matrix.new.generate_matrix(@sudoku)
-    @array.length.should == 81
-  end
+  # it 'has a certain length' do
+  #   puzzle = Sudoku.new(@sudoku)
+  #   @array = Matrix.new.generate_matrix(@sudoku)
+  #   @array.length.should == 81
+  # end
   
   # it 'should solve the naked_trip' do
 
@@ -31,43 +31,32 @@ describe 'the matrix' do
 
   describe 'solver should clear naked_candidates' do
 
-    # it 'should solve the naked pair' do
-    #   SUDOKU = '000000300001900500560310094100600428004000709270004003040068035002005900000000000'
-    #   array = Matrix.new.generate_matrix(SUDOKU)
-
-    #   array.should == '928547316431986572567312894195673428384251769276894153749168235612435987853729641'
-    # end 
-
     it 'should clear the naked pairs' do
       # Sudoku.send(:remove_const, 'SUDOKU')
       SUDOKU = '000000300001900500560310094100600428004000709270004003040068035002005900000000000'
       puzzle = Sudoku.new(SUDOKU)
-      puzzle.solve_puzzle()
+      puzzle.solve_puzzle(:test_all)
 
       fs = "928547316431986572567312894195673428384251769276894153749168235612435987853729641"
 
       puzzle.final_string.should == fs
-
     end
-# MyClass.send(:remove_const, 'SOME_CONSTANT')
-#   MyClass::SOME_CONSTANT = [1,2,3]
-#   MyClass::SOME_CONSTANT.should == [1,2,3]
 
-    # it 'should solve the naked_trip' do
+    it 'should solve the naked_trip' do
+      temp_array = [8, [1, 6, 7], [4, 5], [3, 5, 6], [2, 3, 7, 9], [2, 5, 7], [2, 7], [1, 9], [5, 7]]
+      trip = naked_trip?(element, temp_array) if element.size == 3
 
-
-    # end
+      
+    end
 
     it 'should solve the naked_quad' do
-    temp_array = [8, [1, 6, 7], [4, 5], [3, 5, 6], [2, 3, 7, 9], [2, 5, 7], [2, 7], [1, 9], [4, 7]]
-    possible_quads = possible_combinations(temp_array)
-    @quad = naked_quad?(temp_array, possible_quads)
+      temp_array = [8, [1, 6, 7], [4, 5], [3, 5, 6], [2, 3, 7, 9], [2, 5, 7], [2, 7], [1, 9], [4, 7]]
+      possible_quads = possible_combinations(temp_array)
+      @quad = naked_quad?(temp_array, possible_quads)
 
-    quad.should == [2, 4, 5, 7]
+      @quad.should == [2, 4, 5, 7]
+    end
   end
-
-  end
-    
 end
 
 
